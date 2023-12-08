@@ -1,5 +1,4 @@
 <%@ page import="java.net.URLDecoder" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="java.text.NumberFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF8"%>
 <%@ include file="jdbc.jsp" %>
@@ -16,7 +15,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             text-align: center; 
             min-height: 100vh;
         }
@@ -58,16 +56,18 @@
 </div>
 
 <%
-String id, name, price;
+String id, name, price, productImageURL;
 id = request.getParameter("id");
 name = URLDecoder.decode(request.getParameter("name"), "UTF-8");
 price = request.getParameter("price");
+productImageURL = request.getParameter("imgURL");
 
+// Decode the productImageURL
 
-String imagePath = "img/" + id + ".jpg?" + System.currentTimeMillis();
+String imagePath = request.getContextPath() + "/" + productImageURL;
 %>
 
-<img src="<%= imagePath %>" alt="Product Logo" height="200" width="200">
+<img src="<%= imagePath %>" alt="Product Logo" height="500" width="500">
 
 <%
 try {

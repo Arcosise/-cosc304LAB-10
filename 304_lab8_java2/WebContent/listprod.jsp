@@ -125,12 +125,17 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 		String pName = rst1.getString("productName");
 		double price = rst1.getDouble("productPrice");
 		String pId = rst1.getString("productId");
+		String imgURL = rst1.getString("productImageURL");
+
 	
 		out.println("<tr><td>" + pName + "</td><td>");
 		out.println("<form action='product.jsp' method='get' style='display:inline;'>"); // Make sure the form is inline
 		out.println("<input type='hidden' name='id' value='" + URLEncoder.encode(pId, "UTF-8") + "'>");
 		out.println("<input type='hidden' name='name' value='" + URLEncoder.encode(pName, "UTF-8") + "'>");
 		out.println("<input type='hidden' name='price' value='" + price + "'>");
+		if (imgURL != null) {
+			out.println("<input type='hidden' name='imgURL' value='" + imgURL + "'>");
+		}
 		out.println("<button type='submit' class='custom-button'>Product Info</button>"); // Apply custom-button class
 		out.println("</form>");
 		out.println("</td></tr>");
@@ -141,7 +146,7 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 	out.println("<h2>Products By Category:</h2>");
 
 
-	String q2 = "SELECT category.categoryName,product.productName,productPrice,productId,category.categoryId FROM category JOIN product ON category.categoryId = product.categoryId";
+	String q2 = "SELECT category.categoryName,product.productName,productPrice,productId,category.categoryId, product.productImageURL FROM category JOIN product ON category.categoryId = product.categoryId";
 	PreparedStatement pstmt2 = con.prepareStatement(q2);
 
 	ResultSet rst2 = pstmt2.executeQuery();
@@ -154,6 +159,7 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 		String pName = rst2.getString("productName");
 		double pPrice = rst2.getDouble("productPrice");
 		String pId = rst2.getString("productId");
+		String imgURL = rst2.getString("productImageURL");
 	
 		if (!cName.equals(currentCategory)) {
 			if (currentCategory != null) {
@@ -170,6 +176,9 @@ try (Connection con = DriverManager.getConnection(url, uid, pw)) {
 		out.println("<input type='hidden' name='id' value='" + URLEncoder.encode(pId, "UTF-8") + "'>");
 		out.println("<input type='hidden' name='name' value='" + URLEncoder.encode(pName, "UTF-8") + "'>");
 		out.println("<input type='hidden' name='price' value='" + pPrice + "'>");
+		if (imgURL != null) {
+			out.println("<input type='hidden' name='imgURL' value='" + imgURL + "'>");
+		}
 		out.println("<button type='submit' class='custom-button'>Product Info</button>");
 		out.println("</form>");
 		out.println("</td></tr>");

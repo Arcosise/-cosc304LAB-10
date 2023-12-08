@@ -7,7 +7,7 @@
 <title> Order List</title>
 <style>
     body {
-        background-color: pink; /* Set the background color to pink */
+        background-color: pink;
     }
 </style>
 <link rel="shortcut icon" href="img/Vigor.jpg" type="image/jpeg">

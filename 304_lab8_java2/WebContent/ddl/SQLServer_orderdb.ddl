@@ -183,4 +183,3 @@ UPDATE Product SET productImageURL = 'img/2.jpg' WHERE ProductId = 2;
 UPDATE Product SET productImageURL = 'img/3.jpg' WHERE ProductId = 3;
 UPDATE Product SET productImageURL = 'img/4.jpg' WHERE ProductId = 4;
 UPDATE Product SET productImageURL = 'img/5.jpg' WHERE ProductId = 5;
-UPDATE Product SET productImageURL = 'img/6.jpg' WHERE ProductId = 6;
